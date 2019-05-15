@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     public static  boolean urldone = false;
     public static ArrayList<People> mainpeople = new ArrayList<>();
-    static ListAdapter customlist;
     ListView listViewist;
     int page = 1;
     static String query = "";
     String type = "main";
+    static String api_key = "";
 
 
     @Override
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) { //For submit text
 
                 if (query.equals("main")){
+                    type= "main";
                     url("main",1,query);}
 
                else {
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         if (type.equals("search")){
 
             try {
-                URL searchurl = new URL(String.format("https://api.themoviedb.org/3/search/person?api_key=f8c1a5f5b4725352c3c710d0e8f1dbf8&language=en-US&query=%s&page=%d&include_adult=false",query,page));
+                URL searchurl = new URL(String.format("https://api.themoviedb.org/3/search/person?api_key=%s&language=en-US&query=%s&page=%d&include_adult=false",api_key,query,page));
                 System.out.println(searchurl);
                 new JSON("Search").execute(searchurl);
 
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         if (type.equals("main")){ // For main-screen
 
             try {
-                URL mainURL= new URL("https://api.themoviedb.org/3/person/popular?api_key=f8c1a5f5b4725352c3c710d0e8f1dbf8&language=en-US&page="+page); //Main_Screen URL
+                URL mainURL= new URL(String.format("https://api.themoviedb.org/3/person/popular?api_key=%s&language=en-US&page=%d",api_key,page)); //Main_Screen URL
                 new JSON("Main").execute(mainURL); //JSON for main-screen
             } catch (MalformedURLException e) {
                 e.printStackTrace();
