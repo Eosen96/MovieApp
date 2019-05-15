@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="enter">Enter</string>
+    <string name="search">Search</string>
+    <string name="nextButton">Next</string>
+    <string name="prevButton">Previous</string>
+</resources>
